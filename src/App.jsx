@@ -3,6 +3,58 @@ import "./styles.css";
 export default function App() {
   const base = import.meta.env.BASE_URL;
 
+  // Full Sets (update image extensions if yours are .png)
+  const fullSets = [
+    {
+      name: "Amber & Gold Tea Set",
+      image: `${base}images/tea-set-amber-gold.jpg`,
+      includes: "Teacups, saucers, dessert plates, teapot",
+      price: "From $45",
+    },
+    {
+      name: "Blush Rose Tea Set",
+      image: `${base}images/tea-set-blush-roses.jpg`,
+      includes: "Teacups, saucers, dessert plates, serving tray",
+      price: "From $55",
+    },
+    {
+      name: "Ivory Classic Tea Service",
+      image: `${base}images/tea-set-ivory-classic.jpg`,
+      includes: "Teacups, saucers, salad plates, sugar/creamer",
+      price: "From $50",
+    },
+    {
+      name: "Garden Party Tea Set",
+      image: `${base}images/tea-set-garden-party.jpg`,
+      includes: "Teacups, saucers, dessert plates, tiered stand",
+      price: "From $65",
+    },
+    {
+      name: "Midnight Elegance Set",
+      image: `${base}images/tea-set-midnight-elegance.jpg`,
+      includes: "Teacups, saucers, dessert plates, statement teapot",
+      price: "From $70",
+    },
+    {
+      name: "Blue Willow Tea Set",
+      image: `${base}images/tea-set-blue-willow.jpg`,
+      includes: "Teacups, saucers, plates, teapot",
+      price: "From $48",
+    },
+    {
+      name: "Vintage Lace Tea Set",
+      image: `${base}images/tea-set-vintage-lace.jpg`,
+      includes: "Teacups, saucers, dessert plates, sugar/creamer",
+      price: "From $58",
+    },
+    {
+      name: "Candlelight Champagne Set",
+      image: `${base}images/tea-set-candlelight-champagne.jpg`,
+      includes: "Tea service + optional glassware accents",
+      price: "From $75",
+    },
+  ];
+
   return (
     <>
       <header className="nav">
@@ -43,16 +95,36 @@ export default function App() {
         <section className="grid" style={{ marginTop: 16 }}>
           <div className="card" id="sets">
             <h2>Full Sets</h2>
-            <p>
-              Tea parties, showers, brunches, and celebrations — bundles that look
+            <p className="muted" style={{ marginTop: 6 }}>
+              Browse our most popular tea & gathering bundles. Each set is curated to look
               intentional and photograph beautifully.
             </p>
-            <ul className="bullets">
-              <li>Tea sets (cups / saucers / plates)</li>
-              <li>Dinner sets for gatherings</li>
-              <li>Serving pieces & accents</li>
-            </ul>
-            <a className="button primary" href="#reserve">Reserve a Set</a>
+
+            {/* Full Sets Photo Grid */}
+            <div className="catalogGrid" style={{ marginTop: 12 }}>
+              {fullSets.map((set) => (
+                <div className="catalogCard" key={set.name}>
+                  <img
+                    className="catalogImg"
+                    src={set.image}
+                    alt={set.name}
+                    loading="lazy"
+                  />
+                  <div className="catalogBody">
+                    <div className="catalogTop">
+                      <h3>{set.name}</h3>
+                      <span className="pill">{set.price}</span>
+                    </div>
+                    <p className="muted" style={{ marginTop: 6 }}>
+                      {set.includes}
+                    </p>
+                    <a className="button primary" href="#reserve">
+                      Reserve This Set
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="card" id="items">
