@@ -99,7 +99,10 @@ a:hover { text-decoration: underline; }
   position: absolute;
   left: 16px;
   right: 16px;
-  bottom: 18px;
+
+  /* anchor lower in the image */
+  top: 52%;
+
   padding: 16px;
   border-radius: 14px;
   background: linear-gradient(
@@ -109,6 +112,7 @@ a:hover { text-decoration: underline; }
   );
   color: #fff;
 }
+
 
 .heroOverlay h1 {
   margin: 0 0 6px;
@@ -130,10 +134,11 @@ a:hover { text-decoration: underline; }
 /* Desktop overlay tuning */
 @media (min-width: 900px) {
   .heroOverlay {
-    bottom: 26px;
+    top: 56%;        /* slightly lower on wide screens */
     max-width: 720px;
   }
 }
+
 
 /* Mobile hero cropping + overlay placement */
 @media (max-width: 600px) {
@@ -148,7 +153,7 @@ a:hover { text-decoration: underline; }
   }
 
   .heroOverlay {
-    bottom: 10px;
+    top: 58%;
   }
 
   .heroOverlay h1 {
