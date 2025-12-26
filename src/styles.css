@@ -80,6 +80,24 @@ a:hover { text-decoration: underline; }
   display: block;
 }
 
+/* Mobile hero cropping control */
+@media (max-width: 600px) {
+  .hero {
+    height: 220px;            /* adjust 200–280 if you want */
+  }
+
+  .hero img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center top; /* keeps top content visible */
+  }
+
+  .heroOverlay h1 {
+    font-size: 22px;
+  }
+}
+
+
 .heroOverlay {
   position: absolute;
   left: 16px;
