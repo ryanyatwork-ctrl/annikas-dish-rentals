@@ -1,186 +1,488 @@
 import "./styles.css";
 
-export default function App() {
-  const base = import.meta.env.BASE_URL;
+const FORM_ENDPOINT = "https://formspree.io/f/xnjwlnpg";
+const CONTACT_EMAIL = "info@dishesbyannika.com";
 
-  // Full Sets (update image extensions if yours are .png)
-  const fullSets = [
-    {
-      name: "Amber & Gold Tea Set",
-      image: `${base}images/tea-set-amber-gold.png`,
-      includes: "Teacups, saucers, dessert plates, teapot",
-      price: "From $45",
-    },
-    {
-      name: "Blush Rose Tea Set",
-      image: `${base}images/tea-set-blush-roses.png`,
-      includes: "Teacups, saucers, dessert plates, serving tray",
-      price: "From $55",
-    },
-    {
-      name: "Ivory Classic Tea Service",
-      image: `${base}images/tea-set-ivory-classic.png`,
-      includes: "Teacups, saucers, salad plates, sugar/creamer",
-      price: "From $50",
-    },
-    {
-      name: "Garden Party Tea Set",
-      image: `${base}images/tea-set-garden-party.png`,
-      includes: "Teacups, saucers, dessert plates, tiered stand",
-      price: "From $65",
-    },
-    {
-      name: "Midnight Elegance Set",
-      image: `${base}images/tea-set-midnight-elegance.png`,
-      includes: "Teacups, saucers, dessert plates, statement teapot",
-      price: "From $70",
-    },
-    {
-      name: "Blue Willow Tea Set",
-      image: `${base}images/tea-set-blue-willow.png`,
-      includes: "Teacups, saucers, plates, teapot",
-      price: "From $48",
-    },
-    {
-      name: "Vintage Lace Tea Set",
-      image: `${base}images/tea-set-vintage-lace.png`,
-      includes: "Teacups, saucers, dessert plates, sugar/creamer",
-      price: "From $58",
-    },
-    {
-      name: "Candlelight Champagne Set",
-      image: `${base}images/tea-set-candlelight-champagne.png`,
-      includes: "Tea service + optional glassware accents",
-      price: "From $75",
-    },
-  ];
+const serviceAreas = ["Coeur d’Alene", "Hayden", "Post Falls", "Rathdrum"];
+
+const fullSets = [
+  {
+    name: "Amber & Gold Tea Set",
+    image: "images/tea-set-amber-gold.png",
+    includes: "Teacups, saucers, dessert plates, and teapot",
+    price: "Quote-based · often from $45",
+    bestFor: "Warm showers, brunches, and cozy tea gatherings",
+  },
+  {
+    name: "Blush Rose Tea Set",
+    image: "images/tea-set-blush-roses.png",
+    includes: "Teacups, saucers, dessert plates, and serving tray",
+    price: "Quote-based · often from $55",
+    bestFor: "Bridal showers, baby showers, and feminine tablescapes",
+  },
+  {
+    name: "Ivory Classic Tea Service",
+    image: "images/tea-set-ivory-classic.png",
+    includes: "Teacups, saucers, salad plates, sugar bowl, and creamer",
+    price: "Quote-based · often from $50",
+    bestFor: "Classic gatherings, brunches, and intimate celebrations",
+  },
+  {
+    name: "Garden Party Tea Set",
+    image: "images/tea-set-garden-party.png",
+    includes: "Teacups, saucers, dessert plates, and tiered stand",
+    price: "Quote-based · often from $65",
+    bestFor: "Garden parties, spring showers, and outdoor celebrations",
+  },
+  {
+    name: "Midnight Elegance Set",
+    image: "images/tea-set-midnight-elegance.png",
+    includes: "Teacups, saucers, dessert plates, and statement teapot",
+    price: "Quote-based · often from $70",
+    bestFor: "Evening gatherings, moody tables, and dramatic styling",
+  },
+  {
+    name: "Blue Willow Tea Set",
+    image: "images/tea-set-blue-willow.png",
+    includes: "Teacups, saucers, plates, and teapot",
+    price: "Quote-based · often from $48",
+    bestFor: "Traditional tea service and timeless blue-and-white styling",
+  },
+  {
+    name: "Vintage Lace Tea Set",
+    image: "images/tea-set-vintage-lace.png",
+    includes: "Teacups, saucers, dessert plates, sugar bowl, and creamer",
+    price: "Quote-based · often from $58",
+    bestFor: "Vintage-inspired showers, luncheons, and tea parties",
+  },
+  {
+    name: "Candlelight Champagne Set",
+    image: "images/tea-set-candlelight-champagne.png",
+    includes: "Tea service with optional glassware and accent pieces",
+    price: "Quote-based · often from $75",
+    bestFor: "Elegant celebrations, evening events, and romantic tables",
+  },
+];
+
+const eventTypes = [
+  "Tea parties",
+  "Bridal showers",
+  "Baby showers",
+  "Brunches",
+  "Garden parties",
+  "Small celebrations",
+];
+
+const rentalDetails = [
+  {
+    title: "Rental window",
+    text: "Standard rental windows are 2–5 days depending on pickup, event date, and return timing.",
+  },
+  {
+    title: "Pickup and delivery",
+    text: "Pickup is by appointment in Coeur d’Alene. Delivery is available for select orders in Coeur d’Alene, Hayden, Post Falls, and Rathdrum.",
+  },
+  {
+    title: "Deposit",
+    text: "A 20% deposit is required to confirm a reservation after availability and quote details are approved.",
+  },
+  {
+    title: "Cancellations",
+    text: "Cancellations made more than 15 days before the event are eligible for a full refund of the deposit. Cancellations made 7–15 days before the event are eligible for a 50% refund. Cancellations made less than 7 days before the event are non-refundable.",
+  },
+  {
+    title: "Damage or missing pieces",
+    text: "Missing, broken, or damaged items may be charged per piece at replacement value.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Do you deliver?",
+    answer:
+      "Yes. Delivery is available for select orders in Coeur d’Alene, Hayden, Post Falls, and Rathdrum. Delivery availability and fees are confirmed with your quote.",
+  },
+  {
+    question: "Where is pickup?",
+    answer: "Pickup is by appointment in Coeur d’Alene.",
+  },
+  {
+    question: "How long can I keep the rentals?",
+    answer:
+      "Most rental windows are 2–5 days depending on your event date, pickup time, and return timing.",
+  },
+  {
+    question: "How do I reserve a date?",
+    answer:
+      "Submit a rental request with your event date, guest count, and desired pieces. Your reservation is confirmed after availability is approved and the 20% deposit is paid.",
+  },
+  {
+    question: "Do I need to wash everything before returning it?",
+    answer:
+      "Please remove food and liquids before returning items. Final care instructions will be included with your confirmed rental details.",
+  },
+  {
+    question: "What happens if something breaks?",
+    answer:
+      "Missing, broken, or damaged items may be charged per piece at replacement value.",
+  },
+  {
+    question: "Can I rent individual pieces?",
+    answer:
+      "Yes. Individual pieces may be available depending on inventory, event needs, and order size.",
+  },
+];
+
+function App() {
+  const base = import.meta.env.BASE_URL;
 
   return (
     <>
       <header className="nav">
-        <div className="navInner">
-          <div className="brand">
-            <div className="brandName">Dishes By Annika</div>
-            <div className="brandSub">Dish Rentals</div>
-          </div>
+        <a className="brand" href="#top" aria-label="Dishes by Annika home">
+          <span className="brandName">Dishes by Annika</span>
+          <span className="brandSub">Dish & Tea Set Rentals</span>
+        </a>
 
-          <nav className="links">
-            <a href="#sets">Full Sets</a>
-            <a href="#items">Single Items</a>
-            <a href="#reserve">Reserve</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
+        <nav className="links" aria-label="Main navigation">
+          <a href="#sets">Sets</a>
+          <a href="#how">How it works</a>
+          <a href="#details">Details</a>
+          <a href="#reserve">Reserve</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </header>
 
-      <main className="container">
-        {/* HERO */}
+      <main id="top">
         <section className="hero">
-          <img
-            src={`${base}images/hero.png`}
-            alt="Dishes By Annika banner"
-            loading="eager"
-          />
-          <div className="heroOverlay">
-            <h1>Elevated dish rentals for gatherings & tea</h1>
-            <p>Curated sets and individual pieces — simple pickup, easy returns.</p>
+          <div className="heroImageWrap">
+            <img
+              src={`${base}images/hero.png`}
+              alt="Elegant dish and tea set rentals arranged for a special gathering"
+              loading="eager"
+            />
+          </div>
+
+          <div className="heroContent">
+            <p className="eyebrow">Coeur d’Alene area dish rentals</p>
+            <h1>Beautiful dish rentals for tea parties, showers, brunches, and intimate gatherings</h1>
+            <p className="heroText">
+              Create a polished table without buying, storing, or sourcing everything yourself.
+              Dishes by Annika offers curated dishware, tea sets, serving pieces, and table
+              styling rentals for events in Coeur d’Alene, Hayden, Post Falls, and Rathdrum.
+            </p>
+
             <div className="heroButtons">
-              <a className="button primary" href="#reserve">Reserve Now</a>
-              <a className="button" href="#sets">Browse Sets</a>
+              <a className="button primary" href="#reserve">Check Availability</a>
+              <a className="button secondary" href="#sets">Browse Rental Sets</a>
+            </div>
+
+            <div className="trustBar" aria-label="Rental highlights">
+              <span>Pickup in Coeur d’Alene</span>
+              <span>Delivery available</span>
+              <span>2–5 day rental windows</span>
+              <span>20% deposit to reserve</span>
             </div>
           </div>
         </section>
 
-        {/* SETS + ITEMS */}
-        <section className="grid" style={{ marginTop: 16 }}>
-          <div className="card" id="sets">
-            <h2>Full Sets</h2>
-            <p className="muted" style={{ marginTop: 6 }}>
-              Browse our most popular tea & gathering bundles. Each set is curated to look
-              intentional and photograph beautifully.
+        <section className="section introGrid" aria-label="Service overview">
+          <div className="panel introPanel">
+            <p className="eyebrow">What we rent</p>
+            <h2>Curated tableware with a finished, photo-ready look</h2>
+            <p>
+              Choose a full tea set, build a mixed table, or request individual plates, cups,
+              serving pieces, trays, teapots, and accents. Every request is quoted based on
+              event date, guest count, selected pieces, rental window, and delivery needs.
             </p>
+          </div>
 
-            {/* Full Sets Photo Grid */}
-            <div className="catalogGrid" style={{ marginTop: 12 }}>
-              {fullSets.map((set) => (
-                <div className="catalogCard" key={set.name}>
-                  <img
-                    className="catalogImg"
-                    src={set.image}
-                    alt={set.name}
-                    loading="lazy"
-                  />
-                  <div className="catalogBody">
-                    <div className="catalogTop">
-                      <h3>{set.name}</h3>
-                      <span className="pill">{set.price}</span>
-                    </div>
-                    <p className="muted" style={{ marginTop: 6 }}>
-                      {set.includes}
-                    </p>
-                    <a className="button primary" href="#reserve">
-                      Reserve This Set
-                    </a>
-                  </div>
-                </div>
+          <div className="panel servicePanel">
+            <p className="eyebrow">Service area</p>
+            <h2>Serving North Idaho gatherings</h2>
+            <div className="areaList">
+              {serviceAreas.map((area) => (
+                <span key={area}>{area}</span>
               ))}
             </div>
-          </div>
-
-          <div className="card" id="items">
-            <h2>Single Items</h2>
             <p>
-              Mix-and-match plates, cups, serveware, and statement pieces for your theme.
+              Pickup is by appointment in Coeur d’Alene. Delivery is available for select
+              orders and quoted individually.
             </p>
-            <ul className="bullets">
-              <li>Dessert &amp; salad plates</li>
-              <li>Teacups &amp; glassware</li>
-              <li>Platters, trays, teapots</li>
-            </ul>
-            <a className="button" href="#reserve">Request Items</a>
           </div>
         </section>
 
-        {/* RESERVE */}
-        <section className="card" id="reserve" style={{ marginTop: 16 }}>
-          <h2>Reserve</h2>
-          <p className="muted">
-            Choose pickup/return times, tell us what you want, and we’ll confirm availability.
-            Reservation is confirmed after deposit and confirmation email.
-          </p>
+        <section className="section" id="sets">
+          <div className="sectionHeader">
+            <p className="eyebrow">Featured rental sets</p>
+            <h2>Browse popular tea and gathering bundles</h2>
+            <p>
+              These starting ranges help with planning. Final pricing is confirmed by quote
+              after availability, guest count, delivery needs, and selected pieces are reviewed.
+            </p>
+          </div>
 
-          <div className="reserveRow">
-            <div className="reserveBox">
-              <h3>1) Schedule Pickup / Return</h3>
-              <p className="muted">Calendly / TidyCal embed goes here.</p>
-              <a className="button" href="#reserve">Add Scheduler Link</a>
+          <div className="catalogGrid">
+            {fullSets.map((set) => (
+              <article className="catalogCard" key={set.name}>
+                <img
+                  className="catalogImg"
+                  src={`${base}${set.image}`}
+                  alt={`${set.name} rental set`}
+                  loading="lazy"
+                />
+                <div className="catalogBody">
+                  <div className="catalogTop">
+                    <h3>{set.name}</h3>
+                    <span className="pill">{set.price}</span>
+                  </div>
+                  <p className="includes">{set.includes}</p>
+                  <p className="bestFor">{set.bestFor}</p>
+                  <a className="button cardButton" href="#reserve">
+                    Request This Set
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section eventSection">
+          <div className="sectionHeader">
+            <p className="eyebrow">Perfect for</p>
+            <h2>Gatherings that deserve a beautiful table</h2>
+          </div>
+
+          <div className="eventGrid">
+            {eventTypes.map((eventType) => (
+              <div className="eventCard" key={eventType}>
+                {eventType}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section howSection" id="how">
+          <div className="sectionHeader">
+            <p className="eyebrow">Simple process</p>
+            <h2>How rentals work</h2>
+          </div>
+
+          <div className="stepsGrid">
+            <div className="stepCard">
+              <span>1</span>
+              <h3>Choose your look</h3>
+              <p>Browse curated tea sets, dishware, serving pieces, and table accents.</p>
+            </div>
+            <div className="stepCard">
+              <span>2</span>
+              <h3>Request your date</h3>
+              <p>Send your event date, guest count, preferred pieces, and pickup or delivery needs.</p>
+            </div>
+            <div className="stepCard">
+              <span>3</span>
+              <h3>Confirm your quote</h3>
+              <p>We’ll confirm availability, final pricing, and your 20% deposit.</p>
+            </div>
+            <div className="stepCard">
+              <span>4</span>
+              <h3>Celebrate and return</h3>
+              <p>Enjoy your event, then return the pieces during your scheduled return window.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section detailsGrid" id="details">
+          <div className="panel pricingPanel">
+            <p className="eyebrow">Pricing</p>
+            <h2>Simple quote-based pricing</h2>
+            <p>
+              Most curated rentals start around <strong>$45–$75</strong> depending on the
+              selected pieces, guest count, rental window, and delivery needs. Larger orders,
+              custom mixes, and delivery are quoted individually.
+            </p>
+            <p>
+              A <strong>20% deposit</strong> is required to confirm your reservation after the
+              quote is approved.
+            </p>
+          </div>
+
+          <div className="panel detailList">
+            <p className="eyebrow">Rental details</p>
+            <h2>Clear expectations before you book</h2>
+            {rentalDetails.map((detail) => (
+              <div className="detailItem" key={detail.title}>
+                <h3>{detail.title}</h3>
+                <p>{detail.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section reserveSection" id="reserve">
+          <div className="reserveIntro">
+            <p className="eyebrow">Request availability</p>
+            <h2>Tell us about your event</h2>
+            <p>
+              Submit your event details and we’ll follow up with availability, quote details,
+              deposit instructions, and next steps. Your date is not confirmed until availability
+              is approved and the 20% deposit is completed.
+            </p>
+          </div>
+
+          <form className="rentalForm" action={FORM_ENDPOINT} method="POST">
+            <input type="hidden" name="_subject" value="New Dishes by Annika rental request" />
+            <input type="text" name="_gotcha" className="hiddenField" tabIndex="-1" autoComplete="off" />
+
+            <div className="formGrid">
+              <label>
+                Name <span>*</span>
+                <input name="name" type="text" autoComplete="name" required />
+              </label>
+
+              <label>
+                Email <span>*</span>
+                <input name="email" type="email" autoComplete="email" required />
+              </label>
+
+              <label>
+                Phone
+                <input name="phone" type="tel" autoComplete="tel" />
+              </label>
+
+              <label>
+                Event date <span>*</span>
+                <input name="event_date" type="date" required />
+              </label>
+
+              <label>
+                Event type
+                <select name="event_type" defaultValue="">
+                  <option value="" disabled>Select one</option>
+                  <option>Tea party</option>
+                  <option>Bridal shower</option>
+                  <option>Baby shower</option>
+                  <option>Brunch</option>
+                  <option>Garden party</option>
+                  <option>Small celebration</option>
+                  <option>Other</option>
+                </select>
+              </label>
+
+              <label>
+                Guest count
+                <input name="guest_count" type="number" min="1" placeholder="Example: 12" />
+              </label>
+
+              <label>
+                Pickup or delivery
+                <select name="pickup_or_delivery" defaultValue="">
+                  <option value="" disabled>Select one</option>
+                  <option>Pickup in Coeur d’Alene</option>
+                  <option>Delivery quote requested</option>
+                  <option>Not sure yet</option>
+                </select>
+              </label>
+
+              <label>
+                Event city
+                <select name="event_city" defaultValue="">
+                  <option value="" disabled>Select one</option>
+                  <option>Coeur d’Alene</option>
+                  <option>Hayden</option>
+                  <option>Post Falls</option>
+                  <option>Rathdrum</option>
+                  <option>Other nearby area</option>
+                </select>
+              </label>
             </div>
 
-            <div className="reserveBox">
-              <h3>2) Pay Deposit</h3>
-              <p className="muted">Stripe Payment Link goes here.</p>
-              <a className="button primary" href="#reserve">Add Deposit Link</a>
-            </div>
+            <label>
+              Interested set or items
+              <input
+                name="interested_items"
+                type="text"
+                placeholder="Example: Blush Rose Tea Set, dessert plates, teacups"
+              />
+            </label>
+
+            <label>
+              Rental window or timing notes
+              <input
+                name="rental_window"
+                type="text"
+                placeholder="Example: pickup Friday, return Monday"
+              />
+            </label>
+
+            <label>
+              Message <span>*</span>
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Tell us about your event, style, colors, guest count, delivery needs, or anything else that would help us quote the rental."
+                required
+              />
+            </label>
+
+            <button className="button primary submitButton" type="submit">
+              Request Availability
+            </button>
+
+            <p className="formFinePrint">
+              By submitting this form, you are requesting availability and a quote. A reservation
+              is not confirmed until approved and the 20% deposit is completed.
+            </p>
+          </form>
+        </section>
+
+        <section className="section faqSection">
+          <div className="sectionHeader">
+            <p className="eyebrow">Questions</p>
+            <h2>Rental FAQ</h2>
+          </div>
+
+          <div className="faqGrid">
+            {faqs.map((faq) => (
+              <details className="faqItem" key={faq.question}>
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
           </div>
         </section>
 
-        {/* CONTACT */}
-        <section className="card" id="contact" style={{ marginTop: 16 }}>
-          <h2>Contact</h2>
-          <p className="muted">
-            Questions? Send us a message and we’ll help you build the perfect set.
-          </p>
-          <div className="contactLine">
-            <span>Email:</span> <strong>youremail@domain.com</strong>
-            <span className="dot">•</span>
-            <span>Location:</span> <strong>Your City</strong>
+        <section className="section contactSection" id="contact">
+          <div>
+            <p className="eyebrow">Contact</p>
+            <h2>Questions before booking?</h2>
+            <p>
+              Send your event date, guest count, and the kind of table you are imagining.
+              We’ll help you choose the right pieces.
+            </p>
+          </div>
+
+          <div className="contactCard">
+            <span>Email</span>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            <span>Service area</span>
+            <p>Coeur d’Alene, Hayden, Post Falls, and Rathdrum</p>
+            <span>Pickup</span>
+            <p>By appointment in Coeur d’Alene</p>
           </div>
         </section>
-
-        <footer className="footer">
-          <small>© {new Date().getFullYear()} Dishes By Annika</small>
-        </footer>
       </main>
+
+      <footer className="footer">
+        <small>
+          © {new Date().getFullYear()} Dishes by Annika · Dish and tea set rentals in the
+          Coeur d’Alene area
+        </small>
+      </footer>
+
+      <a className="mobileCta" href="#reserve">Check Availability</a>
     </>
   );
 }
+
+export default App;
