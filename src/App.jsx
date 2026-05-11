@@ -9,6 +9,7 @@ const fullSets = [
   {
     name: "Amber & Gold Tea Set",
     image: "images/tea-set-amber-gold.png",
+    serves: "Ideal for 6-10 guests",
     includes: "Teacups, saucers, dessert plates, and teapot",
     price: "Quote-based · often from $45",
     bestFor: "Warm showers, brunches, and cozy tea gatherings",
@@ -16,6 +17,7 @@ const fullSets = [
   {
     name: "Blush Rose Tea Set",
     image: "images/tea-set-blush-roses.png",
+    serves: "Ideal for 8-12 guests",
     includes: "Teacups, saucers, dessert plates, and serving tray",
     price: "Quote-based · often from $55",
     bestFor: "Bridal showers, baby showers, and feminine tablescapes",
@@ -23,6 +25,7 @@ const fullSets = [
   {
     name: "Ivory Classic Tea Service",
     image: "images/tea-set-ivory-classic.png",
+    serves: "Ideal for 6-12 guests",
     includes: "Teacups, saucers, salad plates, sugar bowl, and creamer",
     price: "Quote-based · often from $50",
     bestFor: "Classic gatherings, brunches, and intimate celebrations",
@@ -30,6 +33,7 @@ const fullSets = [
   {
     name: "Garden Party Tea Set",
     image: "images/tea-set-garden-party.png",
+    serves: "Ideal for 10-16 guests",
     includes: "Teacups, saucers, dessert plates, and tiered stand",
     price: "Quote-based · often from $65",
     bestFor: "Garden parties, spring showers, and outdoor celebrations",
@@ -37,6 +41,7 @@ const fullSets = [
   {
     name: "Midnight Elegance Set",
     image: "images/tea-set-midnight-elegance.png",
+    serves: "Ideal for 8-14 guests",
     includes: "Teacups, saucers, dessert plates, and statement teapot",
     price: "Quote-based · often from $70",
     bestFor: "Evening gatherings, moody tables, and dramatic styling",
@@ -44,6 +49,7 @@ const fullSets = [
   {
     name: "Blue Willow Tea Set",
     image: "images/tea-set-blue-willow.png",
+    serves: "Ideal for 6-10 guests",
     includes: "Teacups, saucers, plates, and teapot",
     price: "Quote-based · often from $48",
     bestFor: "Traditional tea service and timeless blue-and-white styling",
@@ -51,6 +57,7 @@ const fullSets = [
   {
     name: "Vintage Lace Tea Set",
     image: "images/tea-set-vintage-lace.png",
+    serves: "Ideal for 8-12 guests",
     includes: "Teacups, saucers, dessert plates, sugar bowl, and creamer",
     price: "Quote-based · often from $58",
     bestFor: "Vintage-inspired showers, luncheons, and tea parties",
@@ -58,19 +65,56 @@ const fullSets = [
   {
     name: "Candlelight Champagne Set",
     image: "images/tea-set-candlelight-champagne.png",
+    serves: "Ideal for 10-18 guests",
     includes: "Tea service with optional glassware and accent pieces",
     price: "Quote-based · often from $75",
     bestFor: "Elegant celebrations, evening events, and romantic tables",
   },
 ];
 
-const eventTypes = [
-  "Tea parties",
-  "Bridal showers",
-  "Baby showers",
-  "Brunches",
-  "Garden parties",
-  "Small celebrations",
+const occasionCards = [
+  {
+    title: "Tea parties",
+    text: "Layered cups, saucers, dessert plates, teapots, trays, and delicate serving pieces.",
+  },
+  {
+    title: "Bridal showers",
+    text: "Soft floral sets, champagne accents, and polished place settings for a celebratory table.",
+  },
+  {
+    title: "Baby showers",
+    text: "Light, charming dishware that feels sweet without becoming overly themed.",
+  },
+  {
+    title: "Brunches",
+    text: "Salad plates, teacups, serving pieces, and mixed settings for a relaxed morning event.",
+  },
+  {
+    title: "Garden parties",
+    text: "Color, florals, and tiered stands that suit outdoor tables and afternoon gatherings.",
+  },
+  {
+    title: "Accent pieces",
+    text: "Individual trays, teapots, cups, plates, and serving details to finish an existing table.",
+  },
+];
+
+const priceHighlights = [
+  {
+    label: "Curated tea sets",
+    value: "Often $45-$75+",
+    text: "Best for small showers, tea parties, brunches, and intimate gatherings.",
+  },
+  {
+    label: "Individual pieces",
+    value: "Quoted by item",
+    text: "Helpful when you need extra teacups, dessert plates, trays, or serving accents.",
+  },
+  {
+    label: "Delivery",
+    value: "Quoted by location",
+    text: "Available for select Coeur d’Alene, Hayden, Post Falls, and Rathdrum orders.",
+  },
 ];
 
 const rentalDetails = [
@@ -133,6 +177,34 @@ const faqs = [
   },
 ];
 
+const trustSignals = [
+  {
+    title: "Inspected before every rental",
+    text: "Pieces are checked before pickup so your table feels clean, complete, and event-ready.",
+  },
+  {
+    title: "Practical return instructions",
+    text: "You will receive simple care and return details with your confirmed reservation.",
+  },
+  {
+    title: "Thoughtful substitutions",
+    text: "If a fragile vintage piece becomes unavailable, we will confirm a fitting alternative before your event.",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "The table looked collected and special without us having to buy a single extra plate.",
+    name: "Shower host",
+  },
+  {
+    quote:
+      "Pickup was simple, the pieces were beautiful, and the set made our tea feel like an occasion.",
+    name: "Tea party rental",
+  },
+];
+
 function App() {
   const base = import.meta.env.BASE_URL;
 
@@ -146,8 +218,10 @@ function App() {
 
         <nav className="links" aria-label="Main navigation">
           <a href="#sets">Sets</a>
+          <a href="#occasions">Occasions</a>
           <a href="#how">How it works</a>
           <a href="#details">Details</a>
+          <a href="#about">About</a>
           <a href="#reserve">Reserve</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -168,16 +242,17 @@ function App() {
 
           <div className="heroContent">
             <p className="eyebrow">Coeur d’Alene area dish rentals</p>
-            <h1>Beautiful dish rentals for tea parties, showers, brunches, and intimate gatherings</h1>
+            <h1>Elegant dish rentals for tea parties, showers, dinners, and special gatherings</h1>
             <p className="heroText">
-              Create a polished table without buying, storing, or sourcing everything yourself.
-              Dishes by Annika offers curated dishware, tea sets, serving pieces, and table
-              styling rentals for events in Coeur d’Alene, Hayden, Post Falls, and Rathdrum.
+              Curated dishware, tea sets, serving pieces, and table accents for hosts who want
+              a finished table without buying and storing every detail. Pickup is by appointment
+              in Coeur d’Alene, with select delivery available across nearby North Idaho.
             </p>
 
             <div className="heroButtons">
-              <a className="button primary" href="#reserve">Check Availability</a>
-              <a className="button secondary" href="#sets">Browse Rental Sets</a>
+              <a className="button primary" href="#reserve">Reserve Now</a>
+              <a className="button secondary" href="#sets">Browse Sets</a>
+              <a className="inlineLink" href="#how">How it works</a>
             </div>
 
             <div className="trustBar" aria-label="Rental highlights">
@@ -239,6 +314,7 @@ function App() {
                     <h3>{set.name}</h3>
                     <span className="pill">{set.price}</span>
                   </div>
+                  <p className="serves">{set.serves}</p>
                   <p className="includes">{set.includes}</p>
                   <p className="bestFor">{set.bestFor}</p>
                   <a className="button cardButton" href="#reserve">
@@ -250,17 +326,22 @@ function App() {
           </div>
         </section>
 
-        <section className="section eventSection">
+        <section className="section eventSection" id="occasions">
           <div className="sectionHeader">
-            <p className="eyebrow">Perfect for</p>
-            <h2>Gatherings that deserve a beautiful table</h2>
+            <p className="eyebrow">Browse by occasion</p>
+            <h2>Start with the kind of gathering you are hosting</h2>
+            <p>
+              Not sure which set fits? Choose the event style first and we can recommend a
+              cohesive mix of plates, cups, serving pieces, and accents.
+            </p>
           </div>
 
           <div className="eventGrid">
-            {eventTypes.map((eventType) => (
-              <div className="eventCard" key={eventType}>
-                {eventType}
-              </div>
+            {occasionCards.map((occasion) => (
+              <article className="eventCard" key={occasion.title}>
+                <h3>{occasion.title}</h3>
+                <p>{occasion.text}</p>
+              </article>
             ))}
           </div>
         </section>
@@ -295,6 +376,35 @@ function App() {
           </div>
         </section>
 
+        <section className="section trustSection">
+          <div className="sectionHeader">
+            <p className="eyebrow">Reassurance</p>
+            <h2>Beautiful pieces, clear rental expectations</h2>
+            <p>
+              Dishware rentals should feel delightful, not mysterious. These details are here
+              so you know what to expect before you inquire.
+            </p>
+          </div>
+
+          <div className="trustGrid">
+            {trustSignals.map((item) => (
+              <article className="trustCard" key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="testimonialGrid" aria-label="Customer notes">
+            {testimonials.map((testimonial) => (
+              <figure className="testimonialCard" key={testimonial.quote}>
+                <blockquote>“{testimonial.quote}”</blockquote>
+                <figcaption>{testimonial.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
         <section className="section detailsGrid" id="details">
           <div className="panel pricingPanel">
             <p className="eyebrow">Pricing</p>
@@ -308,6 +418,15 @@ function App() {
               A <strong>20% deposit</strong> is required to confirm your reservation after the
               quote is approved.
             </p>
+            <div className="priceGrid" aria-label="Pricing examples">
+              {priceHighlights.map((price) => (
+                <div className="priceItem" key={price.label}>
+                  <span>{price.label}</span>
+                  <strong>{price.value}</strong>
+                  <p>{price.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="panel detailList">
@@ -319,6 +438,31 @@ function App() {
                 <p>{detail.text}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="section aboutSection" id="about">
+          <div className="aboutCopy">
+            <p className="eyebrow">About Annika</p>
+            <h2>A collected table, without the collecting</h2>
+            <p>
+              Dishes by Annika was created for hosts who love the charm of a layered table but
+              do not want to spend months hunting for matching pieces. The collection leans
+              romantic, classic, and a little nostalgic, with sets that can be kept cohesive or
+              mixed for a more personal look.
+            </p>
+            <p>
+              The goal is simple: make it easier to host something beautiful, whether it is an
+              afternoon tea, a shower, a brunch, or a small celebration with people you love.
+            </p>
+          </div>
+
+          <div className="aboutPhoto">
+            <img
+              src={`${base}images/hero.png`}
+              alt="Styled dish rental table by Dishes by Annika"
+              loading="lazy"
+            />
           </div>
         </section>
 
@@ -483,7 +627,7 @@ function App() {
         </small>
       </footer>
 
-      <a className="mobileCta" href="#reserve">Check Availability</a>
+      <a className="mobileCta" href="#reserve">Reserve Now</a>
     </>
   );
 }
