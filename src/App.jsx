@@ -154,13 +154,16 @@ function App() {
       </header>
 
       <main id="top">
-        <section className="hero">
-          <div className="heroImageWrap">
-            <img
-              src={`${base}images/hero.png`}
-              alt="Elegant dish and tea set rentals arranged for a special gathering"
-              loading="eager"
-            />
+        <section className="hero heroWithLogo">
+          <div className="heroLogoWrap">
+            <picture>
+              <source srcSet={`${base}images/dishes-by-annika-logo.webp`} type="image/webp" />
+              <img
+                src={`${base}images/dishes-by-annika-logo.png`}
+                alt="Dishes by Annika Dish Rentals logo"
+                loading="eager"
+              />
+            </picture>
           </div>
 
           <div className="heroContent">
